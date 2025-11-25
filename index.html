@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>CleanBox</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+<!-- 상단 공통바 -->
+<header class="topbar">
+    <div class="top-left">
+        <button class="subscribe-btn">구독하기</button>
+    </div>
+
+    <div class="top-center">
+        <h1 class="logo">CleanBox</h1>
+    </div>
+
+    <div class="top-right">
+        <label class="theme-switch" aria-label="테마 전환">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider"></span>
+        </label>
+        <input type="text" class="global-search" placeholder="검색...">
+    </div>
+</header>
+
+<!-- 1. 프로젝트 목록 화면 -->
+<section id="page-projects" class="page">
+
+    <div class="project-header">
+        <h2>프로젝트 목록</h2>
+        <button id="add-project-btn" class="primary-btn">+ 새 프로젝트</button>
+    </div>
+
+    <div id="project-list" class="project-grid">
+        <!-- JS로 프로젝트 카드가 여기에 삽입됨 -->
+    </div>
+
+</section>
+
+<!-- 2. 프로젝트 내부 화면 -->
+<section id="page-detail" class="page hidden">
+
+    <div class="detail-header">
+        <button id="back-btn" class="back-btn">&larr; 뒤로</button>
+        <h2 id="detail-title">프로젝트 이름</h2>
+
+        <div class="detail-tools">
+            <input id="file-search" type="text" placeholder="파일명 또는 태그 검색..." class="search-input">
+            <select id="sort-select" class="search-input">
+                <option value="createdAt">최신순</option>
+                <option value="name">이름순</option>
+                <option value="tag">태그순</option>
+            </select>
+            <button id="upload-btn" class="primary-btn">업로드</button>
+            <input id="file-input" type="file" multiple style="display:none;">
+            <div class="project-actions">
+                <button id="rename-project-btn" class="primary-btn ghost">프로젝트 이름 변경</button>
+                <button id="delete-project-btn" class="danger-btn">프로젝트 삭제</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="drop-zone" class="drop-zone">
+        <p>여기에 파일을 드래그하거나 클릭해서 업로드</p>
+    </div>
+
+    <div id="file-grid" class="file-grid">
+        <!-- 업로드된 파일 카드가 여기에 렌더링됨 -->
+    </div>
+
+</section>
+
+<!-- 3. 전역 검색 결과 화면 -->
+<section id="page-global" class="page hidden">
+    <div class="global-header">
+        <h2>전체 파일 검색 결과</h2>
+        <div class="global-tools">
+            <select id="global-sort-select" class="search-input">
+                <option value="createdAt">최신순</option>
+                <option value="name">이름순</option>
+                <option value="tag">태그순</option>
+            </select>
+        </div>
+    </div>
+    <div id="global-grid" class="file-grid global-grid">
+        <!-- 전역 검색 결과 렌더링 -->
+    </div>
+</section>
+
+<!-- 파일 모달 -->
+<div id="file-modal" class="modal hidden">
+    <div class="modal-body">
+        <button id="modal-close" class="icon-btn">&times;</button>
+        <div class="modal-content">
+            <div class="modal-preview">
+                <img id="modal-image" alt="미리보기">
+            </div>
+            <div class="modal-detail">
+                <label class="field-label" for="modal-name-input">파일 이름</label>
+                <div class="rename-row">
+                    <input id="modal-name-input" type="text" class="text-input">
+                    <button id="modal-save-name" class="primary-btn ghost">이름 변경</button>
+                </div>
+
+                <div class="tag-editor">
+                    <div class="field-label">태그</div>
+                    <div id="modal-tags" class="tag-list"></div>
+                    <form id="tag-form" class="tag-form">
+                        <input id="tag-input" type="text" class="text-input" placeholder="태그 추가 후 Enter">
+                        <button type="submit" class="primary-btn ghost">추가</button>
+                    </form>
+                </div>
+
+                <div class="modal-actions">
+                    <button id="modal-delete" class="danger-btn">삭제</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="scripts/app.js"></script>
+</body>
+</html>
