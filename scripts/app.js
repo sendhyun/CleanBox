@@ -19,7 +19,8 @@ import {
     showProjectListPage,
     showFileModal,
     hideFileModal,
-    setDropHighlight
+    setDropHighlight,
+    initSubscriptionModal
 } from "./ui.js";
 
 let currentProject = null;
@@ -35,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     refreshProjectList();
     syncGlobalSearchInput();
     initThemeToggle();
+    initSubscriptionModal();
 });
 
 function bindGlobalEvents() {

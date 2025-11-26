@@ -9,9 +9,7 @@
 
 <!-- 상단 공통바 -->
 <header class="topbar">
-    <div class="top-left">
-        <button class="subscribe-btn">구독하기</button>
-    </div>
+    <div class="top-left"></div>
 
     <div class="top-center">
         <h1 class="logo">CleanBox</h1>
@@ -23,6 +21,7 @@
             <span class="slider"></span>
         </label>
         <input type="text" class="global-search" placeholder="검색...">
+        <button id="subscribe-open-btn" class="subscribe-btn">구독하기</button>
     </div>
 </header>
 
@@ -93,7 +92,7 @@
 <!-- 파일 모달 -->
 <div id="file-modal" class="modal hidden">
     <div class="modal-body">
-        <button id="modal-close" class="icon-btn">&times;</button>
+        <button id="modal-close" class="icon-btn modal-close" aria-label="파일 모달 닫기">&times;</button>
         <div class="modal-content">
             <div class="modal-preview">
                 <img id="modal-image" alt="미리보기">
@@ -117,6 +116,38 @@
                 <div class="modal-actions">
                     <button id="modal-delete" class="danger-btn">삭제</button>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 구독 모달 -->
+<div id="subscribe-modal" class="modal hidden" aria-modal="true" role="dialog" aria-labelledby="subscribe-title">
+    <div class="modal-body subscribe-modal">
+        <button id="subscribe-close" class="icon-btn modal-close" aria-label="모달 닫기">&times;</button>
+        <div class="subscribe-content">
+            <div class="subscribe-text">
+                <h3 id="subscribe-title">CleanBox 구독</h3>
+                <p>스마트한 파일 정리를 위한 미니멀 스토리지 툴입니다.</p>
+                <p>협업과 버전 관리를 간단한 클릭으로 체험해 보세요.</p>
+            </div>
+            <div class="subscribe-form">
+                <label class="field-label" for="plan-select">구독 상품</label>
+                <select id="plan-select" class="select-input">
+                    <option value="basic">Basic - 월 9,900원</option>
+                    <option value="pro">Pro - 월 19,900원</option>
+                    <option value="team">Team - 월 39,900원</option>
+                </select>
+
+                <label class="field-label" for="payment-method-select">결제 수단</label>
+                <select id="payment-method-select" class="select-input">
+                    <option value="card">신용/체크카드</option>
+                    <option value="transfer">계좌이체</option>
+                    <option value="mobile">휴대폰 결제</option>
+                </select>
+
+                <button id="fake-pay-btn" class="primary-btn subscribe-pay-btn">결제하기(가짜)</button>
+                <p class="fake-notice">이 결제는 실제로 이루어지지 않습니다</p>
             </div>
         </div>
     </div>
