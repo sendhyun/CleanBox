@@ -140,6 +140,20 @@ export function showFileModal(file, { onRename, onDelete, onAddTag, onRemoveTag,
     const tagList = document.getElementById("modal-tags");
     const tagForm = document.getElementById("tag-form");
     const tagInput = document.getElementById("tag-input");
+    const downloadBtn = document.getElementById("modal-download");
+    const closeBtn = document.getElementById("modal-close");
+
+    function escHandler(e) {
+        if (e.key === "Escape") {
+            handleClose();
+        }
+    }
+
+    function handleClose() {
+        hideFileModal();
+        document.removeEventListener("keydown", escHandler);
+        if (typeof onClose === "function") onClose();
+    }
 
     nameInput.value = file.name;
     preview.src = file.dataUrl;
@@ -177,12 +191,25 @@ export function showFileModal(file, { onRename, onDelete, onAddTag, onRemoveTag,
         }
     };
 
-    document.getElementById("modal-close").onclick = handleClose;
+    downloadBtn.onclick = () => {
+        if (!file || !file.dataUrl) return;
+
+        const a = document.createElement("a");
+        a.href = file.dataUrl;
+        a.download = file.name;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+    };
+
+    closeBtn.onclick = handleClose;
     modal.onclick = (e) => {
         if (e.target.id === "file-modal") {
             handleClose();
         }
     };
+
+    document.addEventListener("keydown", escHandler);
 
     tagForm.onsubmit = (e) => {
         e.preventDefault();
@@ -194,11 +221,6 @@ export function showFileModal(file, { onRename, onDelete, onAddTag, onRemoveTag,
     };
 
     modal.classList.remove("hidden");
-
-    function handleClose() {
-        hideFileModal();
-        if (typeof onClose === "function") onClose();
-    }
 }
 
 export function hideFileModal() {
